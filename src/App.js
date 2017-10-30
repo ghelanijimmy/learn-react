@@ -45,7 +45,7 @@ class App extends Component {
           age: 2,
           username: 'changedUser',
         }
-      ]
+      ], showPersons: false
     });
   }
 
@@ -115,6 +115,13 @@ class App extends Component {
     });
   }
 
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({
+      showPersons: !doesShow
+    });
+  }
+
   render() {
 
     const style = {
@@ -125,6 +132,32 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    let persons = null;
+
+    if(this.state.showPersons){
+      persons = (
+        <div className="Person">
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+            click={this.switchNameHandler.bind(this, 'Jimmy GG')}
+            changed={this.nameChangeHandler}
+          >
+          </Person>
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+          >
+          </Person>
+          <Person
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+          >
+          </Person>
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <header className="App-header">
@@ -134,52 +167,9 @@ class App extends Component {
         <p className="App-intro">
           Let{"'"}s build someting cool!
         </p>
-        <button style={style} onClick={() => this.switchNameHandler('JimmyG')}>Switch Name</button>
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}
-          click={this.switchNameHandler.bind(this, 'Jimmy GG')}
-          changed={this.nameChangeHandler}
-        >
-        </Person>
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-        >
-        </Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-        >
-        </Person>
-        
-        <UserOutput 
-          clicked={this.usernameClickHandler} 
-          username={this.state.persons[0].username} 
-        />
-        <UserInput
-          changed={this.usernameChangeHandler}
-          username={this.state.persons[0].username}
-        />
-        
-        <UserOutput
-          clicked={this.usernameClickHandler}
-          username={this.state.persons[1].username}
-        />
-        <UserInput
-          changed={this.usernameChangeHandler}
-          username={this.state.persons[1].username} 
-        />
-        
-        <UserOutput
-          clicked={this.usernameClickHandler}
-          username={this.state.persons[2].username}
-        />
-        <UserInput
-          changed={this.usernameChangeHandler}
-          username={this.state.persons[2].username} 
-        />
-
+        <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        {persons}
+    
       </div>
     );
   }
