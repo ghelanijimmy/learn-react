@@ -14,7 +14,9 @@ class App extends Component {
         <p className="App-intro">
           Let{"'"}s build someting cool!
         </p>
-        <Person />
+        <Person name="Jimmy" age="28"></Person>
+        <Person name="Aliya" age="26" ></Person>
+        <Person name="Rafiki" age="2">I LOVE FOOD</Person>
       </div>
     );
   }
