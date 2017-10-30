@@ -99,17 +99,17 @@ class App extends Component {
         {
           name: "Jimmy",
           age: 28,
-          username: event.target.value,
+          username: event.target.value
         },
         {
           name: 'Aliya',
           age: 26,
-          username: 'changedUser',
+          username: event.target.value
         },
         {
           name: 'Fiki',
           age: 2,
-          username: 'changedUser',
+          username: event.target.value
         }
       ]
     });
@@ -152,21 +152,34 @@ class App extends Component {
           age={this.state.persons[2].age}
         >
         </Person>
+        
         <UserOutput 
           clicked={this.usernameClickHandler} 
           username={this.state.persons[0].username} 
         />
-        <UserInput changed={this.usernameChangeHandler} username={this.state.persons[0].username}/>
-        <UserOutput
-          clicked={this.usernameClickHandler}
+        <UserInput
+          changed={this.usernameChangeHandler}
           username={this.state.persons[0].username}
         />
-        <UserInput changed={this.usernameChangeHandler} username={this.state.persons[0].username} />
+        
         <UserOutput
           clicked={this.usernameClickHandler}
-          username={this.state.persons[0].username}
+          username={this.state.persons[1].username}
         />
-        <UserInput changed={this.usernameChangeHandler} username={this.state.persons[0].username} />
+        <UserInput
+          changed={this.usernameChangeHandler}
+          username={this.state.persons[1].username} 
+        />
+        
+        <UserOutput
+          clicked={this.usernameClickHandler}
+          username={this.state.persons[2].username}
+        />
+        <UserInput
+          changed={this.usernameChangeHandler}
+          username={this.state.persons[2].username} 
+        />
+
       </div>
     );
   }
