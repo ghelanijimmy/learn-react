@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
+import UserInput from './Person/UserInput';
+import UserOutput from './Person/UserOutput';
 
 class App extends Component {
 
@@ -9,15 +11,18 @@ class App extends Component {
     persons: [
       {
         name: 'Jimmy',
-        age: 28
+        age: 28,
+        username: 'ghelanijimmy'
       },
       {
         name: 'Aliya',
-        age: 26
+        age: 26,
+        username: 'akamalia'
       },
       {
         name: 'Fiki',
-        age: 2
+        age: 2,
+        username: 'feekster'
       }
     ]
   }
@@ -27,15 +32,18 @@ class App extends Component {
       persons: [
         {
           name: newName,
-          age: 28
+          age: 28,
+          username: 'changedUser',
         },
         {
           name: 'Aliya K',
-          age: 26
+          age: 26,
+          username: 'changedUser',
         },
         {
           name: 'Fiki GK',
-          age: 2
+          age: 2,
+          username: 'changedUser',
         }
       ]
     });
@@ -46,15 +54,62 @@ class App extends Component {
       persons: [
         {
           name: event.target.value,
-          age: 28
+          age: 28,
+          username: 'changedUser',
         },
         {
           name: 'Aliya K',
-          age: 26
+          age: 26,
+          username: 'changedUser',
         },
         {
           name: 'Fiki GK',
-          age: 2
+          age: 2,
+          username: 'changedUser',
+        }
+      ]
+    });
+  }
+
+  usernameClickHandler = () => {
+    this.setState({
+      persons:[
+        {
+          name: 'Jimmy',
+          age: 28,
+          username: 'changedUser',
+        },
+        {
+          name: 'Aliya',
+          age: 26,
+          username: 'changedUser',
+        },
+        {
+          name: 'Fiki',
+          age: 2,
+          username: 'changedUser',
+        }
+      ]
+    });
+  }
+
+  usernameChangeHandler = (event) => {
+    this.setState({
+      persons: [
+        {
+          name: "Jimmy",
+          age: 28,
+          username: event.target.value,
+        },
+        {
+          name: 'Aliya',
+          age: 26,
+          username: 'changedUser',
+        },
+        {
+          name: 'Fiki',
+          age: 2,
+          username: 'changedUser',
         }
       ]
     });
@@ -66,7 +121,8 @@ class App extends Component {
       backgroundColor: 'white',
       font: 'inherit',
       border: '1px solid blue',
-      padding: '8px'
+      padding: '8px',
+      cursor: 'pointer'
     };
 
     return (
@@ -96,6 +152,21 @@ class App extends Component {
           age={this.state.persons[2].age}
         >
         </Person>
+        <UserOutput 
+          clicked={this.usernameClickHandler} 
+          username={this.state.persons[0].username} 
+        />
+        <UserInput changed={this.usernameChangeHandler} username={this.state.persons[0].username}/>
+        <UserOutput
+          clicked={this.usernameClickHandler}
+          username={this.state.persons[0].username}
+        />
+        <UserInput changed={this.usernameChangeHandler} username={this.state.persons[0].username} />
+        <UserOutput
+          clicked={this.usernameClickHandler}
+          username={this.state.persons[0].username}
+        />
+        <UserInput changed={this.usernameChangeHandler} username={this.state.persons[0].username} />
       </div>
     );
   }
