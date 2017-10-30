@@ -24,7 +24,9 @@ class App extends Component {
         age: 2,
         id: 2
       }
-    ]
+    ],
+    typed: 0,
+    value: ""
   };
 
   nameChangeHandler = (event, id) => {
@@ -59,6 +61,15 @@ class App extends Component {
     this.setState({ persons: persons })
   }
 
+  enteredLength = (event) => {
+    const entered = event.target.value;
+    const typed = entered.length;
+    this.setState({
+      typed: typed,
+      value: entered
+    });
+  }
+
   render() {
 
     const style = {
@@ -82,7 +93,11 @@ class App extends Component {
                 click={() => this.deletePersonHandler(index)}
                 key={person.id}
                 changed={(event) => this.nameChangeHandler(event, person.id)}
-              />
+                typeLengthCalc={(event) => this.enteredLength(event)}
+                typeLength={this.state.typed}
+                typedContent={this.state.value}
+              >
+              </Person>
             );
           })}
         </div>
@@ -99,6 +114,7 @@ class App extends Component {
           Let{"'"}s build someting cool!
         </p>
         <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        
         {persons}
     
       </div>
