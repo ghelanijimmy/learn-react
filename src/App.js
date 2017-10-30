@@ -4,6 +4,43 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
+
+  state = {
+    persons: [
+      {
+        name: 'Jimmy',
+        age: 28
+      },
+      {
+        name: 'Aliya',
+        age: 26
+      },
+      {
+        name: 'Fiki',
+        age: 2
+      }
+    ]
+  }
+
+  switchNameHandler = (newName) => {
+    this.setState({
+      persons: [
+        {
+          name: newName,
+          age: 28
+        },
+        {
+          name: 'Aliya K',
+          age: 26
+        },
+        {
+          name: 'Fiki GK',
+          age: 2
+        }
+      ]
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -14,9 +51,23 @@ class App extends Component {
         <p className="App-intro">
           Let{"'"}s build someting cool!
         </p>
-        <Person name="Jimmy" age="28"></Person>
-        <Person name="Aliya" age="26" ></Person>
-        <Person name="Rafiki" age="2">I LOVE FOOD</Person>
+        <button onClick={() => this.switchNameHandler('JimmyG')}>Switch Name</button>
+        <Person 
+          name={this.state.persons[0].name} 
+          age={this.state.persons[0].age}
+          click={this.switchNameHandler.bind(this, 'Jimmy GG')}
+        >
+        </Person>
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+        >
+        </Person>
+        <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
+        >
+        </Person>
       </div>
     );
   }
